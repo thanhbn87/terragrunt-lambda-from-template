@@ -24,7 +24,7 @@ locals {
 module "iam_role" {
   source = "git::https:/github.com/thanhbn87/terraform-aws-iam-role.git?ref=tags/0.1.3"
 
-  enable      = "${local.iam_role_enabled}"
+  enabled     = "${local.iam_role_enabled}"
   name        = "lambda"
   namespace   = "${var.namespace}"
   project_env = "${var.project_env}"
