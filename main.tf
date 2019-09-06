@@ -15,7 +15,7 @@ data "aws_iam_role" "lambda" {
 locals {
   temp_file_lambda = "${var.temp_file_lambda == "" ? "${path.module}/StartEC2Instances.py.tpl" : var.temp_file_lambda }"
   iam_role_enabled = "${var.iam_role_name == "" ? true : false }"
-  iam_role_arn     = "${var.iam_role_name == "" ? element(concat(module.iam_role.*.arn,list("")),0) : element(concat(data.aws_iam_role.lambda.*.arn,list("")),0) }"
+  iam_role_arn     = "${var.iam_role_name == "" ? module.iam_role.arn : element(concat(data.aws_iam_role.lambda.*.arn,list("")),0) }"
 }
 
 ///////////////////////
