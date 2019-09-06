@@ -19,6 +19,8 @@ variable "function_name" { default = "lambda_function" }
 variable "handler" { default = "lambda_function.lambda_handler" }
 variable "runtime" { default = "python3.7" }
 
+variable "cloudwatch_log_retention_days" { default = "14" }
+
 variable tags {
   default = {}
 }
