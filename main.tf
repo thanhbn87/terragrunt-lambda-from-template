@@ -7,17 +7,25 @@ terraform {
   backend "s3" {}
 }
 
+data "aws_iam_role" "lambda" {
+  count = "${var.iam_role_name == "" ? 0 : 1}"
+  name  = "${var.iam_role_name}"
+}
+
 locals {
   temp_file_lambda = "${var.temp_file_lambda == "" ? "${path.module}/StartEC2Instances.py.tpl" : var.temp_file_lambda }"
+  iam_role_enabled = "${var.iam_role_name == "" ? true : false }"
+  iam_role_arn     = "${var.iam_role_name == "" ? element(concat(module.iam_role.*.arn,list("")),0) : element(concat(data.aws_iam_role.lambda.*.arn,list("")),0) }"
 }
 
 ///////////////////////
 //        iam        //
 ///////////////////////
 module "iam_role" {
-  source = "git::https:/github.com/thanhbn87/terraform-aws-iam-role.git?ref=tags/0.1.2"
+  source = "git::https:/github.com/thanhbn87/terraform-aws-iam-role.git?ref=tags/0.1.3"
 
-  name        = "${var.name}"
+  enable      = "${local.iam_role_enabled}"
+  name        = "lambda"
   namespace   = "${var.namespace}"
   project_env = "${var.project_env}"
   project_env_short = "${var.project_env_short}"

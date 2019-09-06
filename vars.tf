@@ -12,6 +12,7 @@ variable "temp_file_assumerole" { default = "" }
 variable "temp_file_policy" { default = "" }
 variable "inline_policy_name" { default = "" }
 
+variable "iam_role_name" { default = "" }
 variable "temp_file_lambda" { default = "" }
 variable "lambda_resources" { default = [] }
 variable "file_name" { default = "lambda_function" }
