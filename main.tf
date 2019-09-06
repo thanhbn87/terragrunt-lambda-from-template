@@ -75,6 +75,7 @@ resource "aws_lambda_function" "this" {
   role    = "${local.iam_role_arn}"
   handler = "${var.handler}"
   runtime = "${var.runtime}"
+  timeout = "${var.timeout}"
 
   depends_on = ["aws_cloudwatch_log_group.lambda","data.archive_file.lambda_zip"]
 }
