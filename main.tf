@@ -72,7 +72,7 @@ resource "aws_lambda_function" "this" {
   filename         = "${data.archive_file.lambda_zip.output_path}"
   source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
   
-  role    = "${module.iam_role.arn}"
+  role    = "${local.iam_role_arn}"
   handler = "${var.handler}"
   runtime = "${var.runtime}"
 
