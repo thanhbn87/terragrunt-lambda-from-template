@@ -56,7 +56,7 @@ data "archive_file" "lambda_zip" {
 ///////////////////////
 resource "aws_cloudwatch_log_group" "lambda" {
   name              = "/aws/lambda/${var.function_name}"
-  retention_in_days = "{var.cloudwatch_log_retention_days}"
+  retention_in_days = "${var.cloudwatch_log_retention_days}"
 }
  
 resource "aws_lambda_function" "this" {
