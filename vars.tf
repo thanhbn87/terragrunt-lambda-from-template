@@ -24,6 +24,21 @@ variable "timeout" { default = "10" }
 variable "environment_variables" { default = {} }
 variable "lambda_memory_size" { default = "128" }
 
+variable "lambda_vpc" { default = false }
+variable "tfstate_bucket" { default = "example-tfstate-bucket" }
+variable "tfstate_region" { default = "us-west-2" }
+variable "tfstate_profile" { default = "default" }
+variable "tfstate_arn" { default = "" }
+variable "tfstate_key_vpc" { default = "demo/vpc/terraform.tfstate" }
+variable "security_group_tags" { default = {} }
+variable "subnet_ids" { default = [] }
+variable "security_group_ids" { default = [] }
+
+variable "scheduled_lambda" { default = false }
+variable "schedule_name" { default = "Lambda" }
+variable "schedule_description" { default = "Lambda Schedule" }
+variable "schedule_expression" { default = "cron(33 3 ? * MON-FRI *)" }
+
 variable "cloudwatch_log_retention_days" { default = "14" }
 
 variable tags {
