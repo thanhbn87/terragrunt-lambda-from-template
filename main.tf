@@ -73,10 +73,14 @@ resource "aws_lambda_function" "this" {
   filename         = "${data.archive_file.lambda_zip.output_path}"
   source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
   
-  role    = "${local.iam_role_arn}"
-  handler = "${var.handler}"
-  runtime = "${var.runtime}"
-  timeout = "${var.timeout}"
+  role        = "${local.iam_role_arn}"
+  handler     = "${var.handler}"
+  runtime     = "${var.runtime}"
+  timeout     = "${var.timeout}"
+  memory_size = "${var.lambda_memory_size}"
+  environment = {
+    variables = "${var.environment_variables}"
+  }
 
   depends_on = ["aws_cloudwatch_log_group.lambda","data.archive_file.lambda_zip"]
 }
