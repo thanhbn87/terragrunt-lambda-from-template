@@ -69,6 +69,7 @@ resource "aws_cloudwatch_log_group" "lambda" {
  
 resource "aws_lambda_function" "this" {
   function_name    = "${var.function_name}"
+  description      = "${var.description}"
   filename         = "${data.archive_file.lambda_zip.output_path}"
   source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
   

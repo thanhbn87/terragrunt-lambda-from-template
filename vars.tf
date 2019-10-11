@@ -17,6 +17,7 @@ variable "temp_file_lambda" { default = "" }
 variable "lambda_resources" { default = [] }
 variable "file_name" { default = "lambda_function" }
 variable "function_name" { default = "lambda_function" }
+variable "description" { default = "Lambda Function" }
 variable "handler" { default = "lambda_function.lambda_handler" }
 variable "runtime" { default = "python3.7" }
 variable "timeout" { default = "10" }
