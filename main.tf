@@ -102,9 +102,6 @@ resource "aws_lambda_function" "this" {
   runtime     = "${var.runtime}"
   timeout     = "${var.timeout}"
   memory_size = "${var.lambda_memory_size}"
-  environment = {
-    variables = "${var.environment_variables}"
-  }
 
   depends_on = ["aws_cloudwatch_log_group.lambda","data.archive_file.lambda_zip"]
 }
@@ -129,10 +126,6 @@ resource "aws_lambda_function" "lambda_vpc" {
   runtime     = "${var.runtime}"
   timeout     = "${var.timeout}"
   memory_size = "${var.lambda_memory_size}"
-
-  environment = {
-    variables = "${var.environment_variables}"
-  }
 
   vpc_config {
     subnet_ids         = ["${local.subnet_ids}"]

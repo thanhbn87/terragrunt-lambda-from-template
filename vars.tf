@@ -21,7 +21,6 @@ variable "description" { default = "Lambda Function" }
 variable "handler" { default = "lambda_function.lambda_handler" }
 variable "runtime" { default = "python3.7" }
 variable "timeout" { default = "10" }
-variable "environment_variables" { default = {} }
 variable "lambda_memory_size" { default = "128" }
 
 variable "lambda_vpc" { default = false }
